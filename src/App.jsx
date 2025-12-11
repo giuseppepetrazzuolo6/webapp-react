@@ -1,9 +1,20 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import DefaultLayout from "./assets/layouts/DefaultLayout"
+import HomePage from './assets/pages/HomePage'
+
 function App() {
 
 
   return (
     <>
-      <h1>Movies server blog</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<DefaultLayout />}>
+            <Route path="/" element={<HomePage />}></Route>
+          </Route>
+
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
