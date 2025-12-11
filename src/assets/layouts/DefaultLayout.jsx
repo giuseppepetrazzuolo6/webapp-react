@@ -7,7 +7,7 @@ export default function DefaultLayout() {
     return (
         <>
             <Header />
-            <main className="vh-100">
+            <main>
                 <Outlet />
             </main>
             <Footer />
