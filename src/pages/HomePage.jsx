@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import axios from "axios"
 import { useEffect, useState } from "react"
 
@@ -31,7 +32,8 @@ export default function HomePage() {
                                         <h3 className="card-title">
                                             {movie.title}
                                         </h3>
-                                        <p>{movie.genre}</p>
+                                        <p><b>Genre:</b> {movie.genre}</p>
+                                        <Link className='btn btn-dark mt-1' to={`/movies/${movie.id}`}>View Details</Link>
                                     </div>
                                 </div>
                             </div>
