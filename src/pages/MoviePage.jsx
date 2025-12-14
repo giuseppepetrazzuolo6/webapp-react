@@ -6,7 +6,7 @@ import axios from "axios"
 export default function MoviePage() {
 
     const { id } = useParams()
-    const [movie, setMovie] = useState([])
+    const [movie, setMovie] = useState(null)
 
     useEffect(() => {
         axios.get(`http://localhost:3000/api/movies/${id}`)
@@ -19,13 +19,27 @@ export default function MoviePage() {
             })
     }, [])
 
+    function getRating(vote) {
+
+        let stars = []
+
+        for (let i = 1; i <= vote; i++) {
+            stars.push(<i className="bi bi-star-fill"></i>)
+        }
+        for (let i = 1; i <= 5 - vote; i++) {
+            stars.push(<i className="bi bi-star"></i>)
+        }
+        return stars
+
+    }
+
     return (
         <>
             <div className="container mt-4">
                 <div className="row g-3">
                     <div className="col-12 col-md-4">
                         <div className="card_image">
-                            <img src={`http://localhost:3000/${movie.image}`} alt=""
+                            <img src={`http://localhost:3000/${movie?.image}`} alt=""
                                 style={{ width: '250px' }} />
                         </div>
                     </div>
@@ -43,20 +57,17 @@ export default function MoviePage() {
             <section id="reviewsList">
                 <div className="container">
                     <h3 className="mb-4">Reviews</h3>
-                    <div className="card p-3 mb-3">
-                        <strong>Name</strong>
-                        <p>
-                            busdam reprehenderit provident obcaecati placeat, ab rerum. Pariatur voluptatum at odit
-                            tempora rem!
-                        </p>
-                        <div className="rating">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star"></i>
-                            <i class="bi bi-star"></i>
+                    {movie?.reviews.map(review =>
+                        <div className="card p-3 mb-3" key={review.id}>
+                            <strong>{review.name}</strong>
+                            <p>
+                                {review.text}
+                            </p>
+                            <div className="rating">
+                                {getRating(review.vote)}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </section>
         </>
