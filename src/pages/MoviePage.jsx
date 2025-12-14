@@ -20,23 +20,46 @@ export default function MoviePage() {
     }, [])
 
     return (
-        <div className="container mt-4">
-            <div className="row g-3">
-                <div className="col-12 col-md-4">
-                    <div className="card_image">
-                        <img src={`http://localhost:3000/${movie.image}`} alt=""
-                            style={{ width: '250px' }} />
+        <>
+            <div className="container mt-4">
+                <div className="row g-3">
+                    <div className="col-12 col-md-4">
+                        <div className="card_image">
+                            <img src={`http://localhost:3000/${movie.image}`} alt=""
+                                style={{ width: '250px' }} />
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-8">
+                        <h2 className="my-3">{movie?.title}</h2>
+                        <p><b>Director:</b> <em>{movie?.director}</em></p>
+                        <p><b>Genre:</b> <em>{movie?.genre}</em></p>
+                        <p><b>Release year:</b> <em>{movie?.release_year}</em></p>
+                        <p><b>Plot:</b> {movie?.abstract}</p>
+                        <Link className='btn btn-dark mt-5' to={`/`}>Back to Movies</Link>
                     </div>
                 </div>
-                <div className="col-12 col-md-8">
-                    <h2 className="my-3">{movie?.title}</h2>
-                    <p><b>Director:</b> <em>{movie?.director}</em></p>
-                    <p><b>Genre:</b> <em>{movie?.genre}</em></p>
-                    <p><b>Release year:</b> <em>{movie?.release_year}</em></p>
-                    <p><b>Plot:</b> {movie?.abstract}</p>
-                    <Link className='btn btn-dark mt-5' to={`/`}>Back to Movies</Link>
-                </div>
             </div>
-        </div>
+            <hr />
+            <section id="reviewsList">
+                <div className="container">
+                    <h3 className="mb-4">Reviews</h3>
+                    <div className="card p-3 mb-3">
+                        <strong>Name</strong>
+                        <p>
+                            busdam reprehenderit provident obcaecati placeat, ab rerum. Pariatur voluptatum at odit
+                            tempora rem!
+                        </p>
+                        <div className="rating">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star"></i>
+                            <i class="bi bi-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </>
+
     )
 }
