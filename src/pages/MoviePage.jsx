@@ -55,7 +55,7 @@ export default function MoviePage() {
                 </div>
             </div>
             <hr />
-            <FormReviews />
+            <FormReviews movieId={id} />
             <hr />
             <section id="reviewsList">
                 <div className="container">
