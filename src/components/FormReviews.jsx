@@ -21,8 +21,6 @@ export default function FormReviews({ movieId }) {
             }).catch((error) => {
                 console.error('Error submitting review', error)
             })
-
-
     }
 
 

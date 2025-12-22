@@ -14,7 +14,6 @@ function App() {
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/movies/:id" element={<MoviePage />} />
           </Route>
-
         </Routes>
       </BrowserRouter>
     </>
