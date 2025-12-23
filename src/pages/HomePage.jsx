@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useGlobalContext } from '../contexts/GlobalContext';
 
 export default function HomePage() {
-
     const [movies, setMovies] = useState([])
 
+    const { setLoading } = useGlobalContext()
+
     useEffect(() => {
+        setLoading(true)
         axios.get('http://localhost:3000/api/movies')
             .then(response => {
                 console.log(response);
@@ -14,6 +17,8 @@ export default function HomePage() {
             })
             .catch(err => {
                 console.log(err.message);
+            }).finally(() => {
+                setLoading(false)
             })
     }, [])
 

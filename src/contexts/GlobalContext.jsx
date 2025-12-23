@@ -1,8 +1,8 @@
-import { Children, createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 
 const GlobalContext = createContext()
 
-function GlobalProvider({ Children }) {
+function GlobalProvider({ children }) {
     const [loading, setLoading] = useState(false)
 
     const values = {
@@ -12,7 +12,7 @@ function GlobalProvider({ Children }) {
 
     return (
         <GlobalContext.Provider value={values}>
-            {Children}
+            {children}
         </GlobalContext.Provider>
     )
 }

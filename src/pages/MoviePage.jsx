@@ -3,13 +3,16 @@ import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import FormReviews from "../components/FormReviews"
+import { useGlobalContext } from "../contexts/GlobalContext"
 
 export default function MoviePage() {
 
     const { id } = useParams()
     const [movie, setMovie] = useState(null)
+    const { setLoading } = useGlobalContext()
 
     useEffect(() => {
+        setLoading(true)
         axios.get(`http://localhost:3000/api/movies/${id}`)
             .then(response => {
                 console.log(response);
@@ -17,6 +20,8 @@ export default function MoviePage() {
             })
             .catch(err => {
                 console.log(err.message);
+            }).finally(() => {
+                setLoading(false)
             })
     }, [])
 
